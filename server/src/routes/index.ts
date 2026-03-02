@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import healthRoutes from './health.routes';
 import diagnosticsRoutes from './diagnostics.routes';
+import migrationRoutes from './migration.routes';
 import authRoutes from './auth.routes';
 import userRoutes from './user.routes';
 import learnerRoutes from './learner.routes';
@@ -41,6 +42,7 @@ const router = Router();
 // ============================================
 router.use('/health', healthRoutes);
 router.use('/diagnostics', diagnosticsRoutes);
+router.use('/migrations', migrationRoutes);
 router.use('/auth', authRoutes);
 router.use('/books', bookRoutes);
 router.get('/auth/csrf', issueCsrfToken);
