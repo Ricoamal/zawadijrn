@@ -41,6 +41,7 @@
     "eject": "react-scripts eject",
     "backend": "npm --prefix server run dev",
     "frontend": "npm start",
+    "gcp-build": "npm --prefix server install && npm --prefix server run build",
     "kill-ports": "powershell -ExecutionPolicy Bypass -Command \"& { $ports=@(3000,5000); foreach ($p in $ports){ try { Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue | Select-Object -Expand OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue } } catch {} } }\"",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "lint": "eslint \"src\" --ext .js,.jsx",
