@@ -49,6 +49,11 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // API Routes
 app.use('/api', routes);
 
+// DEBUG: Simple endpoint that bypasses all other middleware for diagnostics
+app.get('/status', (_req, res) => {
+  res.send('OK');
+});
+
 // Error handling
 app.use(notFoundHandler);
 app.use(errorHandler);
