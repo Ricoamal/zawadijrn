@@ -32,9 +32,9 @@ steps:
       - '5000'
       - '--allow-unauthenticated'
       - '--memory'
-      - '1Gi'
+      - '8Gi'
       - '--cpu'
-      - '1'
+      - '2'
       - '--timeout'
       - '300'
 
