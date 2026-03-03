@@ -31,12 +31,13 @@ app.use(hideSensitiveHeaders);
 // Add security headers
 app.use(securityHeaders);
 
-// Global IP-based rate limiting
-app.use(ipRateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  maxRequests: 1000, // 1000 requests per 15 minutes
-  message: 'Too many requests from this IP. Please try again later.'
-}));
+// Global IP-based rate limiting  
+// DISABLED TEMPORARILY FOR DEBUGGING - was causing request timeout
+// app.use(ipRateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   maxRequests: 1000, // 1000 requests per 15 minutes
+//   message: 'Too many requests from this IP. Please try again later.'
+// }));
 
 // Response sanitization
 app.use(sanitizeResponse);
