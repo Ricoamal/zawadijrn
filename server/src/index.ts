@@ -47,8 +47,26 @@ async function startServer() {
 
       console.log('🚀 Server started successfully!');
       console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`🌐 API: ${apiUrl}`);
-      console.log(`❤️  Health: ${healthUrl}`);
+      console.log(`📍 API Base: ${apiUrl}`);
+      console.log(`🏥 Health Check: ${healthUrl}`);
+      console.log(`🚀 PORT: ${PORT}`);
+      console.log('---------------------------');
+
+      // Render Keep-Awake Logic
+      if (process.env.RENDER_KEEP_AWAKE === 'true' && process.env.RENDER_SERVICE_URL) {
+        const url = `${process.env.RENDER_SERVICE_URL}/status`.replace(/([^:]\/)\/+/g, "$1");
+        console.log(`⏱️  Keep-Awake active: Pinging ${url} every 14 minutes...`);
+
+        setInterval(async () => {
+          try {
+            const axios = (await import('axios')).default;
+            await axios.get(url);
+            console.log(`♻️ Self-ping successful at ${new Date().toISOString()}`);
+          } catch (err: any) {
+            console.warn(`⚠️ Self-ping failed: ${err.message}`);
+          }
+        }, 14 * 60 * 1000); // 14 minutes
+      }
       console.log('');
       console.log('Available Configured Endpoints:');
 
